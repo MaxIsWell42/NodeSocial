@@ -9,6 +9,11 @@ app.get("/", (req,res) => {
     res.status(200).send("<h1>OuterAct</h1>")
 })
 
+app.get("/api/v1/:token", (req, res) => {
+    console.log(req.params.token)
+    res.status(200).json({ param: req.params.token })
+})
+
 app.get("/api/v1/instagram", (req,res) => {
     const instaSocial = {
         username: 'MaxIsWell',
