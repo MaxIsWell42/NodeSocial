@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require("path")
 const format = require('date-format')
-const PORT = 4000 || process.env.PORT
+const PORT = process.env.port || 4000
 
 // Home
 app.get("/", (req,res) => {
