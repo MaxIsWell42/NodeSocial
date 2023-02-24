@@ -4,6 +4,14 @@ const path = require("path")
 const format = require('date-format')
 const PORT = process.env.port || 4000
 
+// swagger docs
+const swaggerUI = require('swagger-ui-express')
+const YAML = require("yamljs")
+const swaggerDocument = YAML.load('./swagger.yaml')
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+
+
 // Home
 app.get("/", (req,res) => {
     res.status(200).send("<h1>OuterAct</h1>")
@@ -25,11 +33,16 @@ app.get("/api/v1/instagram", (req,res) => {
     res.status(200).json(instaSocial)
 })
 
+/**
+ * @openapi
+ * /LinkedIn
+ */
+
 app.get("/api/v1/linkedIn", (req,res) => {
     const instaSocial = {
         username: 'MaxIsWell',
         connections: 70,
-        date: format.asString('', new Date())
+        date: format.asString("dd[MM] - hh:mm:ss", new Date())
     }
 
     res.status(200).json(instaSocial)
